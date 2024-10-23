@@ -1,0 +1,55 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Expense {
+  _id: ID!
+  name: String!
+  amount: Float!
+  description: String
+  date: DateTime!
+  userId: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type User {
+  _id: ID!
+  name: String!
+  email: String!
+  age: Float!
+  expenses: [Expense!]
+}
+
+type Query {
+  users: [User!]!
+  user(id: String!): User!
+  expenses: [Expense!]!
+  expense(id: String!): Expense!
+}
+
+type Mutation {
+  createUser(createUserDto: CreateUserDto!): User!
+  updateUser(id: String!, updateUserDto: CreateUserDto!): User!
+  deleteUser(id: String!): User!
+  createExpense(createExpenseDto: CreateExpenseDto!, userId: String!): Expense!
+  updateExpense(id: String!, updateExpenseDto: CreateExpenseDto!): Expense!
+  deleteExpense(id: String!): Expense!
+}
+
+input CreateUserDto {
+  name: String!
+  email: String!
+  age: Float!
+  password: String!
+}
+
+input CreateExpenseDto {
+  name: String!
+  description: String!
+  amount: Float!
+  date: DateTime!
+}
